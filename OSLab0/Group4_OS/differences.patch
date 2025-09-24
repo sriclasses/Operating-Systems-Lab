@@ -1,0 +1,469 @@
+diff --git a/Makefile b/Makefile
+index 09d790c..0ce5f09 100644
+--- a/Makefile
++++ b/Makefile
+@@ -181,6 +181,7 @@ UPROGS=\
+ 	_usertests\
+ 	_wc\
+ 	_zombie\
++	_bananacheck\
+ 
+ fs.img: mkfs README $(UPROGS)
+ 	./mkfs fs.img README $(UPROGS)
+@@ -249,7 +250,7 @@ qemu-nox-gdb: fs.img xv6.img .gdbinit
+ 
+ EXTRA=\
+ 	mkfs.c ulib.c user.h cat.c echo.c forktest.c grep.c kill.c\
+-	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c zombie.c\
++	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c zombie.c bananacheck.c \
+ 	printf.c umalloc.c\
+ 	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
+ 	.gdbinit.tmpl gdbutil\
+diff --git a/syscall.c b/syscall.c
+index ee85261..5d9f7e5 100644
+--- a/syscall.c
++++ b/syscall.c
+@@ -14,58 +14,55 @@
+ // to a saved program counter, and then the first argument.
+ 
+ // Fetch the int at addr from the current process.
+-int
+-fetchint(uint addr, int *ip)
++int fetchint(uint addr, int *ip)
+ {
+   struct proc *curproc = myproc();
+ 
+-  if(addr >= curproc->sz || addr+4 > curproc->sz)
++  if (addr >= curproc->sz || addr + 4 > curproc->sz)
+     return -1;
+-  *ip = *(int*)(addr);
++  *ip = *(int *)(addr);
+   return 0;
+ }
+ 
+ // Fetch the nul-terminated string at addr from the current process.
+ // Doesn't actually copy the string - just sets *pp to point at it.
+ // Returns length of string, not including nul.
+-int
+-fetchstr(uint addr, char **pp)
++int fetchstr(uint addr, char **pp)
+ {
+   char *s, *ep;
+   struct proc *curproc = myproc();
+ 
+-  if(addr >= curproc->sz)
++  if (addr >= curproc->sz)
+     return -1;
+-  *pp = (char*)addr;
+-  ep = (char*)curproc->sz;
+-  for(s = *pp; s < ep; s++){
+-    if(*s == 0)
++  *pp = (char *)addr;
++  ep = (char *)curproc->sz;
++  for (s = *pp; s < ep; s++)
++  {
++    if (*s == 0)
+       return s - *pp;
+   }
+   return -1;
+ }
+ 
+ // Fetch the nth 32-bit system call argument.
+-int
+-argint(int n, int *ip)
++int argint(int n, int *ip)
+ {
+-  return fetchint((myproc()->tf->esp) + 4 + 4*n, ip);
++  return fetchint((myproc()->tf->esp) + 4 + 4 * n, ip);
+ }
+ 
+ // Fetch the nth word-sized system call argument as a pointer
+ // to a block of memory of size bytes.  Check that the pointer
+ // lies within the process address space.
+-int
+-argptr(int n, char **pp, int size)
++int argptr(int n, char **pp, int size)
+ {
+   int i;
+   struct proc *curproc = myproc();
+- 
+-  if(argint(n, &i) < 0)
++
++  if (argint(n, &i) < 0)
+     return -1;
+-  if(size < 0 || (uint)i >= curproc->sz || (uint)i+size > curproc->sz)
++  if (size < 0 || (uint)i >= curproc->sz || (uint)i + size > curproc->sz)
+     return -1;
+-  *pp = (char*)i;
++  *pp = (char *)i;
+   return 0;
+ }
+ 
+@@ -73,11 +70,10 @@ argptr(int n, char **pp, int size)
+ // Check that the pointer is valid and the string is nul-terminated.
+ // (There is no shared writable memory, so the string can't change
+ // between this check and being used by the kernel.)
+-int
+-argstr(int n, char **pp)
++int argstr(int n, char **pp)
+ {
+   int addr;
+-  if(argint(n, &addr) < 0)
++  if (argint(n, &addr) < 0)
+     return -1;
+   return fetchstr(addr, pp);
+ }
+@@ -103,41 +99,45 @@ extern int sys_unlink(void);
+ extern int sys_wait(void);
+ extern int sys_write(void);
+ extern int sys_uptime(void);
++extern int sys_banana(void);
+ 
+ static int (*syscalls[])(void) = {
+-[SYS_fork]    sys_fork,
+-[SYS_exit]    sys_exit,
+-[SYS_wait]    sys_wait,
+-[SYS_pipe]    sys_pipe,
+-[SYS_read]    sys_read,
+-[SYS_kill]    sys_kill,
+-[SYS_exec]    sys_exec,
+-[SYS_fstat]   sys_fstat,
+-[SYS_chdir]   sys_chdir,
+-[SYS_dup]     sys_dup,
+-[SYS_getpid]  sys_getpid,
+-[SYS_sbrk]    sys_sbrk,
+-[SYS_sleep]   sys_sleep,
+-[SYS_uptime]  sys_uptime,
+-[SYS_open]    sys_open,
+-[SYS_write]   sys_write,
+-[SYS_mknod]   sys_mknod,
+-[SYS_unlink]  sys_unlink,
+-[SYS_link]    sys_link,
+-[SYS_mkdir]   sys_mkdir,
+-[SYS_close]   sys_close,
++    [SYS_fork] sys_fork,
++    [SYS_exit] sys_exit,
++    [SYS_wait] sys_wait,
++    [SYS_pipe] sys_pipe,
++    [SYS_read] sys_read,
++    [SYS_kill] sys_kill,
++    [SYS_exec] sys_exec,
++    [SYS_fstat] sys_fstat,
++    [SYS_chdir] sys_chdir,
++    [SYS_dup] sys_dup,
++    [SYS_getpid] sys_getpid,
++    [SYS_sbrk] sys_sbrk,
++    [SYS_sleep] sys_sleep,
++    [SYS_uptime] sys_uptime,
++    [SYS_open] sys_open,
++    [SYS_write] sys_write,
++    [SYS_mknod] sys_mknod,
++    [SYS_unlink] sys_unlink,
++    [SYS_link] sys_link,
++    [SYS_mkdir] sys_mkdir,
++    [SYS_close] sys_close,
++    [SYS_banana] sys_banana,
+ };
+ 
+-void
+-syscall(void)
++void syscall(void)
+ {
+   int num;
+   struct proc *curproc = myproc();
+ 
+   num = curproc->tf->eax;
+-  if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
++  if (num > 0 && num < NELEM(syscalls) && syscalls[num])
++  {
+     curproc->tf->eax = syscalls[num]();
+-  } else {
++  }
++  else
++  {
+     cprintf("%d %s: unknown sys call %d\n",
+             curproc->pid, curproc->name, num);
+     curproc->tf->eax = -1;
+diff --git a/syscall.h b/syscall.h
+index bc5f356..1d9afc8 100644
+--- a/syscall.h
++++ b/syscall.h
+@@ -1,22 +1,23 @@
+ // System call numbers
+-#define SYS_fork    1
+-#define SYS_exit    2
+-#define SYS_wait    3
+-#define SYS_pipe    4
+-#define SYS_read    5
+-#define SYS_kill    6
+-#define SYS_exec    7
+-#define SYS_fstat   8
+-#define SYS_chdir   9
+-#define SYS_dup    10
++#define SYS_fork 1
++#define SYS_exit 2
++#define SYS_wait 3
++#define SYS_pipe 4
++#define SYS_read 5
++#define SYS_kill 6
++#define SYS_exec 7
++#define SYS_fstat 8
++#define SYS_chdir 9
++#define SYS_dup 10
+ #define SYS_getpid 11
+-#define SYS_sbrk   12
+-#define SYS_sleep  13
++#define SYS_sbrk 12
++#define SYS_sleep 13
+ #define SYS_uptime 14
+-#define SYS_open   15
+-#define SYS_write  16
+-#define SYS_mknod  17
++#define SYS_open 15
++#define SYS_write 16
++#define SYS_mknod 17
+ #define SYS_unlink 18
+-#define SYS_link   19
+-#define SYS_mkdir  20
+-#define SYS_close  21
++#define SYS_link 19
++#define SYS_mkdir 20
++#define SYS_close 21
++#define SYS_banana 22
+\ No newline at end of file
+diff --git a/sysproc.c b/sysproc.c
+index 0686d29..8dc6480 100644
+--- a/sysproc.c
++++ b/sysproc.c
+@@ -7,67 +7,62 @@
+ #include "mmu.h"
+ #include "proc.h"
+ 
+-int
+-sys_fork(void)
++int sys_fork(void)
+ {
+   return fork();
+ }
+ 
+-int
+-sys_exit(void)
++int sys_exit(void)
+ {
+   exit();
+-  return 0;  // not reached
++  return 0; // not reached
+ }
+ 
+-int
+-sys_wait(void)
++int sys_wait(void)
+ {
+   return wait();
+ }
+ 
+-int
+-sys_kill(void)
++int sys_kill(void)
+ {
+   int pid;
+ 
+-  if(argint(0, &pid) < 0)
++  if (argint(0, &pid) < 0)
+     return -1;
+   return kill(pid);
+ }
+ 
+-int
+-sys_getpid(void)
++int sys_getpid(void)
+ {
+   return myproc()->pid;
+ }
+ 
+-int
+-sys_sbrk(void)
++int sys_sbrk(void)
+ {
+   int addr;
+   int n;
+ 
+-  if(argint(0, &n) < 0)
++  if (argint(0, &n) < 0)
+     return -1;
+   addr = myproc()->sz;
+-  if(growproc(n) < 0)
++  if (growproc(n) < 0)
+     return -1;
+   return addr;
+ }
+ 
+-int
+-sys_sleep(void)
++int sys_sleep(void)
+ {
+   int n;
+   uint ticks0;
+ 
+-  if(argint(0, &n) < 0)
++  if (argint(0, &n) < 0)
+     return -1;
+   acquire(&tickslock);
+   ticks0 = ticks;
+-  while(ticks - ticks0 < n){
+-    if(myproc()->killed){
++  while (ticks - ticks0 < n)
++  {
++    if (myproc()->killed)
++    {
+       release(&tickslock);
+       return -1;
+     }
+@@ -79,8 +74,7 @@ sys_sleep(void)
+ 
+ // return how many clock tick interrupts have occurred
+ // since start.
+-int
+-sys_uptime(void)
++int sys_uptime(void)
+ {
+   uint xticks;
+ 
+@@ -89,3 +83,61 @@ sys_uptime(void)
+   release(&tickslock);
+   return xticks;
+ }
++int sys_banana(void)
++{
++  void *buf;
++  uint size;
++
++  argptr(0, (void *)&buf, sizeof(buf));
++  argptr(1, (void *)&size, sizeof(size));
++
++  char bababa[] = "\n\
++                                                  :=+***=\n\
++                                                 +@@@@@@@=\n\
++                                                  -#@@@+#\n\
++                                                   .#=-+=\n\
++                                                   .#--=*\n\
++                                                   -*---*=.\n\
++                                                  .*=----=++:\n\
++                                                 .*=--------+*.\n\
++                                                -*-----==----=*=\n\
++                                               -*-------=------++\n\
++                                              .#--------=-------++\n\
++                             ::-::.           #=--------=--------#:\n\
++                            :: .. -::        =*--------==--------=*\n\
++                             -. : : =       .#=--------=---=+==--=#\n\
++                             -:.....=.::.   *+===-----==-======---#\n\
++                             =      ..  =  :#.-*+==---==+.=*=+=--=#\n\
++                             =::.   ::::  :+.:+@@++--==+ =@@@=*--+=\n\
++                             *+-:-:.     -*+ +@@++=-===+ #@@+-+--#.\n\
++                            ++= .       ++-+-*####+==-=+-####*+-++\n\
++                            +*.  ..:--=*=---+++++*==++==*++++*-=# ::.    ::.\n\
++                            -*####**+++------=++===------=++=-=#.:: -..-:..::-.\n\
++                                  -*+-----------==------------#:  -. :..::....::\n\
++                               .=*=------------==------------*:   ::     :.::::.\n\
++                             -++=------------==------------=#*     =  :  .=.\n\
++                          .=*=--------------==------------=*-+*    -:..-::\n\
++                       :=++---------------==-------------*+  .#+:   *+-:\n\
++                    .=*+----------------==-------------=*:     ++*:=@+\n\
++                 .=++----------------===--------------++        .=**-\n\
++               -++----------------===--------------=*+.\n\
++            .+*=---------------====--------------=*#+.\n\
++         .=++--------------====----------------+*=.-++\n\
++        -++=----------=====-----------------=*+:    ++\n\
++        =@@+-----=====-------------------+**:       *@.\n\
++         +@@=-----------------------=+++==@=        =+-\n\
++          .+*+==--------------==+++=-.   -@=        =+-\n\
++             .:-====+++++++===-:        :=@*:      :++=:\n\
++                                       .=-*=-=    =-=*-=:\n\
++                                     --+++=--+:  .+--=+++--.\n\
++                                   -+----=----=  -=---=----=-\n\
++                                   *--------=+=:.=+=--------+.\n\
++                                   +======---:-  ::---======*.\n\
++                                    .::::::.        .::::::.  \n\n";
++
++  if (sizeof(bababa) > size)
++    return -1;
++
++  strncpy((char *)buf, bababa, size);
++  return sizeof(bababa);
++}
+\ No newline at end of file
+diff --git a/user.h b/user.h
+index 4f99c52..bdbe3ad 100644
+--- a/user.h
++++ b/user.h
+@@ -5,35 +5,36 @@ struct rtcdate;
+ int fork(void);
+ int exit(void) __attribute__((noreturn));
+ int wait(void);
+-int pipe(int*);
+-int write(int, const void*, int);
+-int read(int, void*, int);
++int pipe(int *);
++int write(int, const void *, int);
++int read(int, void *, int);
+ int close(int);
+ int kill(int);
+-int exec(char*, char**);
+-int open(const char*, int);
+-int mknod(const char*, short, short);
+-int unlink(const char*);
+-int fstat(int fd, struct stat*);
+-int link(const char*, const char*);
+-int mkdir(const char*);
+-int chdir(const char*);
++int exec(char *, char **);
++int open(const char *, int);
++int mknod(const char *, short, short);
++int unlink(const char *);
++int fstat(int fd, struct stat *);
++int link(const char *, const char *);
++int mkdir(const char *);
++int chdir(const char *);
+ int dup(int);
+ int getpid(void);
+-char* sbrk(int);
++char *sbrk(int);
+ int sleep(int);
+ int uptime(void);
++int banana(void *, uint);
+ 
+ // ulib.c
+-int stat(const char*, struct stat*);
+-char* strcpy(char*, const char*);
+-void *memmove(void*, const void*, int);
+-char* strchr(const char*, char c);
+-int strcmp(const char*, const char*);
+-void printf(int, const char*, ...);
+-char* gets(char*, int max);
+-uint strlen(const char*);
+-void* memset(void*, int, uint);
+-void* malloc(uint);
+-void free(void*);
+-int atoi(const char*);
++int stat(const char *, struct stat *);
++char *strcpy(char *, const char *);
++void *memmove(void *, const void *, int);
++char *strchr(const char *, char c);
++int strcmp(const char *, const char *);
++void printf(int, const char *, ...);
++char *gets(char *, int max);
++uint strlen(const char *);
++void *memset(void *, int, uint);
++void *malloc(uint);
++void free(void *);
++int atoi(const char *);
+diff --git a/usys.S b/usys.S
+index 8bfd8a1..5b8ce19 100644
+--- a/usys.S
++++ b/usys.S
+@@ -29,3 +29,4 @@ SYSCALL(getpid)
+ SYSCALL(sbrk)
+ SYSCALL(sleep)
+ SYSCALL(uptime)
++SYSCALL(banana)
+\ No newline at end of file

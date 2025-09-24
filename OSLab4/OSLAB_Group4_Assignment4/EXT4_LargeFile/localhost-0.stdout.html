@@ -1,0 +1,106 @@
+<title>Vdbench output/localhost-0.stdout.html</title><pre>
+stdout/stderr for slave=localhost-0
+
+00:17:52.390 00:17:52.389 SlaveJvm execution parameter:  '-m localhost'
+00:17:52.390 00:17:52.389 SlaveJvm execution parameter:  '-n localhost-10-241030-00.17.52.271'
+00:17:52.390 00:17:52.389 SlaveJvm execution parameter:  '-l localhost-0'
+00:17:52.390 00:17:52.390 SlaveJvm execution parameter:  '-p 5570'
+00:17:52.390 00:17:52.390 SlaveJvm positional parameter: 'SlaveJvm'
+00:17:52.415 00:17:52.414 successfully connected to master localhost
+00:17:52.415 00:17:52.415 Connection to localhost using port 5570 successful
+00:17:52.570 00:17:52.570 ticks_per_second: 100
+00:17:52.573 00:17:52.572 execute(): ls -l /mnt/virtual_ext4
+00:17:52.585 00:17:52.585 Configuration interpretation took 0.01 seconds
+
+Link to Run Definitions:         <A HREF="#_578866604">format_for_rd1 For loops: None</A>
+                                 <A HREF="#_353842779">rd1 For loops: None</A>
+
+00:17:52.650 00:17:52.650 File '/var/log/messages' does not exist. Monitoring bypassed
+00:17:52.650 00:17:52.650 Beginning of run setup
+00:17:52.650 00:17:52.650 File '/var/log/messages.1' does not exist. Monitoring bypassed
+00:17:52.650 00:17:52.650 **********************
+00:17:52.650 
+00:17:52.650 
+00:17:52.680 00:17:52.680 Deleting old file structure.
+00:17:52.680 00:17:52.680 Starting initializeFileAnchor for rd=format_for_rd1 For loops: None anchor=fsd1
+00:17:52.682 00:17:52.682 Completed the creation of the directory list for /mnt/virtual_ext4: 1 directories.
+00:17:52.682 00:17:52.682 Generated 2 file names; total anchor size: 2g (2,147,483,648)
+00:17:52.682 00:17:52.682 Writing control file for anchor=/mnt/virtual_ext4 at start of run.
+00:17:52.694 00:17:52.694 Completed control file for anchor=/mnt/virtual_ext4 at start of run.  dirs: 1/0 files: 2/0 sizes: 2g/0/0/0
+00:17:52.696 00:17:52.696 Completed initializeFileAnchor for fsd1: 0.02
+00:17:52.704 00:17:52.704 Started 8 threads for fwd=format,fsd=fsd1
+00:17:52.704 00:17:52.704 Started 8 FwgThreads for rd=format_for_rd1 For loops: None
+00:17:52.704 00:17:52.704 Waiting for task synchronization
+00:17:52.704 00:17:52.704 Requesting full garbage collection
+00:17:52.705 00:17:52.705 GcTracker: cum:   0 intv:  0 ms:       0 mss:  0.00% Heap_MB max:  1024 curr:   130 used:    31 free:    99 
+00:17:52.710 00:17:52.710 GcTracker: cum:   1 intv:  1 ms:       4 mss:  0.00% Heap_MB max:  1024 curr:   128 used:    21 free:   107 
+00:17:52.711 00:17:52.710 task_wait_start_complete() end
+
+<a name="_578866604"></a><i><b>00:17:53.002 Starting RD=format_for_rd1</b></i>
+
+00:17:53.003 00:17:53.003 task_run_all(): 9 tasks
+00:17:53.321 00:17:53.320 Message to master: anchor=/mnt/virtual_ext4 mkdir complete.
+00:17:54.749 00:17:54.749 Message to master: anchor=/mnt/virtual_ext4 create complete.
+00:17:54.857 00:17:54.857 
+00:17:54.857 00:17:54.857 Miscellaneous statistics:
+00:17:54.857 00:17:54.857 FILE_CREATES        Files created:                                    2
+00:17:54.857 00:17:54.857 DIRECTORY_CREATES   Directories created:                              1
+00:17:54.857 00:17:54.857 FILE_DELETES        Files deleted:                                  450
+00:17:54.858 00:17:54.857 DIRECTORY_DELETES   Directories deleted:                             12
+00:17:54.858 00:17:54.858 WRITE_OPENS         Files opened for write activity:                  2
+00:17:54.858 00:17:54.858 DIR_EXISTS          Directory may not exist (yet):                    3
+00:17:54.858 00:17:54.858 FILE_CLOSES         Close requests:                                   2
+00:17:54.858 00:17:54.858 
+00:17:54.858 00:17:54.858 Java Heap in MB. max: 1024.000; current:  128.000; used:   26.269; free:  101.731
+00:17:54.859 00:17:54.858 Maximum native memory allocation:    1,048,576; Current allocation:    1,048,576
+00:17:55.032 00:17:55.032 Writing control file for anchor=/mnt/virtual_ext4 at end of run.
+00:17:55.036 00:17:55.036 Completed control file for anchor=/mnt/virtual_ext4 at end of run.  dirs: 1/1 files: 2/2 sizes: 2g/2g/2/2g
+00:17:55.036 00:17:55.036 End of run
+00:17:55.036 00:17:55.036 **********
+00:17:55.036 
+00:17:55.036 
+00:17:55.172 00:17:55.172 Beginning of run setup
+00:17:55.172 00:17:55.172 **********************
+00:17:55.172 
+00:17:55.173 
+00:17:55.211 00:17:55.211 Starting initializeFileAnchor for rd=rd1 For loops: None anchor=fsd1
+00:17:55.211 00:17:55.211 Reading control file for anchor=/mnt/virtual_ext4
+00:17:55.212 00:17:55.212 Completed reading control file.
+00:17:55.212 00:17:55.212 Completed the creation of the directory list for /mnt/virtual_ext4: 1 directories.
+00:17:55.212 00:17:55.212 Generated 2 file names; total anchor size: 2g (2,147,483,648)
+00:17:55.212 00:17:55.212 Writing control file for anchor=/mnt/virtual_ext4 at start of run.
+00:17:55.247 00:17:55.247 Completed control file for anchor=/mnt/virtual_ext4 at start of run.  dirs: 1/1 files: 2/2 sizes: 2g/2g/0/0
+00:17:55.247 00:17:55.247 During anchor creation for anchor=/mnt/virtual_ext4 there were 1 directories and 2 files
+00:17:55.247 00:17:55.247 Completed initializeFileAnchor for fsd1: 0.04
+00:17:55.248 00:17:55.248 Started 2 threads for fwd=fwd1,fsd=fsd1,operation=create
+00:17:55.249 00:17:55.248 Started 2 FwgThreads for rd=rd1 For loops: None
+00:17:55.249 00:17:55.248 Waiting for task synchronization
+00:17:55.249 00:17:55.249 Requesting full garbage collection
+00:17:55.249 00:17:55.249 GcTracker: cum:   1 intv:  0 ms:       0 mss:  0.00% Heap_MB max:  1024 curr:   128 used:    31 free:    97 
+00:17:55.253 00:17:55.253 GcTracker: cum:   2 intv:  1 ms:       4 mss:  0.00% Heap_MB max:  1024 curr:   128 used:    21 free:   107 
+00:17:55.253 00:17:55.253 task_wait_start_complete() end
+
+<a name="_353842779"></a><i><b>00:17:56.000 Starting RD=rd1; elapsed=30; fwdrate=max. For loops: None</b></i>
+
+00:17:56.001 00:17:56.001 task_run_all(): 3 tasks
+00:17:56.249 00:17:56.249 Anchor: /mnt/virtual_ext4
+00:17:56.250 00:17:56.249 Vdbench is trying to create a new file, but all files already exist, 
+00:17:56.250 00:17:56.249 and no threads are currently active deleting files
+00:17:56.250 00:17:56.250 FwgThread.canWeGetMoreFiles(): Shutting down threads for operation=create
+00:17:56.250 00:17:56.250 
+00:17:56.250 00:17:56.250 sendMessageToConsole: Anchor: /mnt/virtual_ext4
+00:17:56.250 00:17:56.250 sendMessageToConsole: Vdbench is trying to create a new file, but all files already exist, 
+00:17:56.251 00:17:56.250 sendMessageToConsole: and no threads are currently active deleting files
+00:17:56.251 00:17:56.250 sendMessageToConsole: FwgThread.canWeGetMoreFiles(): Shutting down threads for operation=create
+00:17:56.251 00:17:56.250 sendMessageToConsole: 
+00:17:56.252 00:17:56.252 Miscellaneous statistics: All counters are zero
+00:17:56.254 00:17:56.254 Java Heap in MB. max: 1024.000; current:  128.000; used:   21.808; free:  106.192
+00:17:56.255 00:17:56.255 Maximum native memory allocation:    1,056,768; Current allocation:        8,192
+00:17:57.027 00:17:57.027 Writing control file for anchor=/mnt/virtual_ext4 at end of run.
+00:17:57.054 00:17:57.054 Completed control file for anchor=/mnt/virtual_ext4 at end of run.  dirs: 1/1 files: 2/2 sizes: 2g/2g/0/0
+00:17:57.054 00:17:57.054 End of run
+00:17:57.055 00:17:57.054 **********
+00:17:57.055 
+00:17:57.055 
+00:17:57.615 00:17:57.615 Master is requesting slave shutdown
+00:17:57.615 00:17:57.615 Java Heap in MB. max: 1024.000; current:  128.000; used:   22.551; free:  105.449

@@ -1,0 +1,88 @@
+<title>Vdbench output/logfile.html</title><pre>
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+Vdbench distribution: vdbench50407
+
+00:17:52.298 input argument scanned: '-fworkload2'
+00:17:52.299 input argument scanned: 'anchor=/mnt/virtual_ext4'
+00:17:52.299 java.vendor                   Ubuntu
+00:17:52.299 java.home                     /usr/lib/jvm/java-11-openjdk-amd64
+00:17:52.299 java.vm.specification.version 11
+00:17:52.299 java.vm.version               11.0.24+8-post-Ubuntu-1ubuntu322.04
+00:17:52.300 java.vm.vendor                Ubuntu
+00:17:52.300 java.specification.version    11
+00:17:52.300 java.class.version            55.0
+00:17:52.300 user.name                     root
+00:17:52.300 user.dir                      /home/ayushsavar/Downloads/Assignment4/Assignment-4/vdbench
+00:17:52.300 java.io.tmpdir                /tmp
+00:17:52.300 java.class.path               ./:./classes:./vdbench.jar
+00:17:52.300 os.name                       Linux
+00:17:52.300 os.arch                       amd64
+00:17:52.300 os.version                    5.19.0-32-generic
+00:17:52.300 sun.arch.data.model           64
+00:17:52.301 Flushing all reports
+00:17:52.309 Creating anchor for /mnt/virtual_ext4,fsd=fsd1
+00:17:52.320 rd1 fsd to format: fsd1
+00:17:52.321 rd1 format on host: localhost
+00:17:52.322 Anchor size: anchor=/mnt/virtual_ext4: dirs:            0; files:            2; bytes:     2.000g (2,147,483,648)
+00:17:52.343 Starting slave: /home/ayushsavar/Downloads/Assignment4/Assignment-4/vdbench/vdbench SlaveJvm -m localhost -n localhost-10-241030-00.17.52.271 -l localhost-0 -p 5570   
+00:17:52.479 Slave localhost-0 (pid  16029) connected to master 15995
+00:17:52.516 All slaves are now connected
+
+Link to Run Definitions:         <A HREF="#_578866604">format_for_rd1 For loops: None</A>
+                                 <A HREF="#_353842779">rd1 For loops: None</A>
+
+00:17:52.613 Flushing all reports
+00:17:52.614 slv=localhost-0 fwd=format fsd=fsd1 anchor=/mnt/virtual_ext4 threads= 8 skew= 0.00 operation=read 
+00:17:52.626 Waiting for synchronization of all slaves
+00:17:52.726 Synchronization of all slaves complete
+
+<a name="_578866604"></a><i><b>00:17:53.002 Starting RD=format_for_rd1</b></i>
+
+00:17:53.323 localhost-0: anchor=/mnt/virtual_ext4 mkdir complete.
+Oct 30, 2024 ..Interval.. .ReqstdOps... ...cpu%...  read ....read..... ....write.... ..mb/sec... mb/sec .xfer.. ...mkdir.... ...rmdir.... ...create... ....open.... ...close.... ...delete...
+                            rate   resp total  sys   pct   rate   resp   rate   resp  read write  total    size  rate   resp  rate   resp  rate   resp  rate   resp  rate   resp  rate   resp
+00:17:54.025            1  14730  0.090   7.1 3.72   0.0    0.0  0.000  14730  0.090  0.00  1841 1841.2  131072   1.0  0.034  12.0  0.019   0.0  0.000   2.0  2.204   0.0  0.000 450.0  0.111
+00:17:54.751 localhost-0: anchor=/mnt/virtual_ext4 create complete.
+00:17:55.008            2 1654.0  0.891   4.5 2.29   0.0    0.0  0.000 1654.0  0.891  0.00 206.7 206.75  131072   0.0  0.000   0.0  0.000   2.0 1416.1   0.0  0.000   2.0  0.114   0.0  0.000
+00:17:55.021      avg_2-2 1654.0  0.891   4.5 2.29   0.0    0.0  0.000 1654.0  0.891  0.00 206.7 206.75  131072   0.0  0.000   0.0  0.000   2.0 1416.1   0.0  0.000   2.0  0.114   0.0  0.000
+00:17:55.021      std_2-2         3.246                                        3.246                                                            13.784                     0.102             
+00:17:55.021      max_2-2 1654.0 18.310                                1654.0 18.310                                   0.034        0.030   2.0 1425.9        2.204   2.0  0.186        0.974
+00:17:55.133 
+00:17:55.133 Miscellaneous statistics:
+00:17:55.133 (These statistics do not include activity between the last reported interval and shutdown.)
+00:17:55.134 FILE_CREATES        Files created:                                    2          1/sec
+00:17:55.134 DIRECTORY_CREATES   Directories created:                              1          0/sec
+00:17:55.134 FILE_DELETES        Files deleted:                                  450        225/sec
+00:17:55.134 DIRECTORY_DELETES   Directories deleted:                             12          6/sec
+00:17:55.135 WRITE_OPENS         Files opened for write activity:                  2          1/sec
+00:17:55.135 DIR_EXISTS          Directory may not exist (yet):                    3          1/sec
+00:17:55.135 FILE_CLOSES         Close requests:                                   2          1/sec
+00:17:55.135 
+00:17:55.135 Flushing all reports
+00:17:55.137 Java Heap in MB. max:  512.000; current:   66.000; used:   22.968; free:   43.032
+00:17:55.151 slv=localhost-0 fwd=fwd1 fsd=fsd1 anchor=/mnt/virtual_ext4 threads= 2 skew= 0.00 operation=create 
+00:17:55.158 Waiting for synchronization of all slaves
+00:17:55.258 Synchronization of all slaves complete
+
+<a name="_353842779"></a><i><b>00:17:56.000 Starting RD=rd1; elapsed=30; fwdrate=max. For loops: None</b></i>
+
+00:17:56.253 
+00:17:56.253 Message from slave localhost-0: 
+00:17:56.253 Anchor: /mnt/virtual_ext4
+00:17:56.253 Vdbench is trying to create a new file, but all files already exist, 
+00:17:56.254 and no threads are currently active deleting files
+00:17:56.254 FwgThread.canWeGetMoreFiles(): Shutting down threads for operation=create
+00:17:56.254 
+Oct 30, 2024 ..Interval.. .ReqstdOps... ...cpu%...  read ....read..... ....write.... ..mb/sec... mb/sec .xfer.. ...mkdir.... ...rmdir.... ...create... ....open.... ...close.... ...delete...
+                            rate   resp total  sys   pct   rate   resp   rate   resp  read write  total    size  rate   resp  rate   resp  rate   resp  rate   resp  rate   resp  rate   resp
+00:17:57.018            1    0.0  0.000   5.4 1.29   0.0    0.0  0.000    0.0  0.000  0.00  0.00   0.00       0   0.0  0.000   0.0  0.000   0.0  0.000   0.0  0.000   0.0  0.000   0.0  0.000
+00:17:57.022      avg_2-1 NaN  0.000 NaN NaN   0.0 NaN  0.000 NaN  0.000 NaN NaN NaN       0 NaN  0.000 NaN  0.000 NaN  0.000 NaN  0.000 NaN  0.000 NaN  0.000
+00:17:57.022      std_2-1                                                                                                                                                                    
+00:17:57.022      max_2-1                                                                                                                                                                    
+00:17:57.128 Miscellaneous statistics: All counters are zero
+00:17:57.128 Flushing all reports
+00:17:57.128 Java Heap in MB. max:  512.000; current:   66.000; used:   23.682; free:   42.318
+00:17:57.146 Ending Reporter
+00:17:57.715 Vdbench execution completed successfully. Output directory: /home/ayushsavar/Downloads/Assignment4/Assignment-4/vdbench/output 
+
+00:17:58.722 Java Heap in MB. max:  512.000; current:   66.000; used:   20.685; free:   45.315

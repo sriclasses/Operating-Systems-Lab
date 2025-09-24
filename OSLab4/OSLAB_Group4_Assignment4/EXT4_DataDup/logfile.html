@@ -1,0 +1,234 @@
+<title>Vdbench output/logfile.html</title><pre>
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+Vdbench distribution: vdbench50407
+
+00:01:43.238 input argument scanned: '-fworkload1'
+00:01:43.238 input argument scanned: 'anchor=/mnt/virtual_ext4'
+00:01:43.238 java.vendor                   Ubuntu
+00:01:43.239 java.home                     /usr/lib/jvm/java-11-openjdk-amd64
+00:01:43.239 java.vm.specification.version 11
+00:01:43.239 java.vm.version               11.0.24+8-post-Ubuntu-1ubuntu322.04
+00:01:43.239 java.vm.vendor                Ubuntu
+00:01:43.239 java.specification.version    11
+00:01:43.239 java.class.version            55.0
+00:01:43.239 user.name                     root
+00:01:43.239 user.dir                      /home/ayushsavar/Downloads/Assignment4/Assignment-4/vdbench
+00:01:43.239 java.io.tmpdir                /tmp
+00:01:43.239 java.class.path               ./:./classes:./vdbench.jar
+00:01:43.239 os.name                       Linux
+00:01:43.239 os.arch                       amd64
+00:01:43.239 os.version                    5.19.0-32-generic
+00:01:43.239 sun.arch.data.model           64
+00:01:43.240 Flushing all reports
+00:01:43.249 Creating anchor for /mnt/virtual_ext4,fsd=fsd1
+00:01:43.261 rd1 fsd to format: fsd1
+00:01:43.261 rd1 format on host: localhost
+00:01:43.263 Anchor size: anchor=/mnt/virtual_ext4: dirs:           12; files:          450; bytes:   450.000m (471,859,200)
+00:01:43.285 Starting slave: /home/ayushsavar/Downloads/Assignment4/Assignment-4/vdbench/vdbench SlaveJvm -m localhost -n localhost-10-241030-00.01.43.209 -l localhost-0 -p 5570   
+00:01:43.434 Slave localhost-0 (pid  15175) connected to master 15142
+00:01:43.457 All slaves are now connected
+00:01:43.498 Dedup options: 
+dedup_type:                            1
+dedup_ratio:                        2.00
+dedup_unit:                    1,048,576
+flipflop:                             no
+hot_dedup_sets:                        0
+hot_dedup_blocks:                      0
+dedup_sets_reqd:                      5%
+dedup_sets_used:                      22
+
+unique_blocks:                       202
+duplicate_blocks:                    248 (including 22 originals)
+dedup_pct:                         50.00
+dedup_adjusted:                    45.00
+total_size:                         450m
+unit_blocks:                         450
+
+Info only reliable if xfersize is multiple of dedupunit:
+uniques_written:                       0; expected 202; delta -202 
+duplicates_written:                    0; expected 248; delta -248 
+Total writes:                          0; delta -450
+flipflops:                             0
+
+Dsim counts: Hash size:              224 (202 uniques + 22 sets)
+Dsim counts: Duplicates:             226
+Dsim counts: Ratio:                 2.01 (2.00893)
+
+00:01:43.500 Dedup options: 
+dedup_type:                            1
+dedup_ratio:                        2.00
+dedup_unit:                    1,048,576
+flipflop:                             no
+hot_dedup_sets:                        0
+hot_dedup_blocks:                      0
+dedup_sets_reqd:                      5%
+dedup_sets_used:                      22
+
+unique_blocks:                       202
+duplicate_blocks:                    248 (including 22 originals)
+dedup_pct:                         50.00
+dedup_adjusted:                    45.00
+total_size:                         450m
+unit_blocks:                         450
+
+Info only reliable if xfersize is multiple of dedupunit:
+uniques_written:                       0; expected 202; delta -202 
+duplicates_written:                    0; expected 248; delta -248 
+Total writes:                          0; delta -450
+flipflops:                             0
+
+Dsim counts: Hash size:              224 (202 uniques + 22 sets)
+Dsim counts: Duplicates:             226
+Dsim counts: Ratio:                 2.01 (2.00893)
+
+
+Link to Run Definitions:         <A HREF="#_1612799726">format_for_rd1 For loops: None</A>
+                                 <A HREF="#_1286084959">rd1 For loops: None</A>
+
+00:01:43.527 Flushing all reports
+00:01:43.529 slv=localhost-0 fwd=format fsd=fsd1 anchor=/mnt/virtual_ext4 threads= 8 skew= 0.00 operation=read 
+00:01:43.530 Dedup options: 
+dedup_type:                            1
+dedup_ratio:                        2.00
+dedup_unit:                    1,048,576
+flipflop:                             no
+hot_dedup_sets:                        0
+hot_dedup_blocks:                      0
+dedup_sets_reqd:                      5%
+dedup_sets_used:                      22
+
+unique_blocks:                       202
+duplicate_blocks:                    248 (including 22 originals)
+dedup_pct:                         50.00
+dedup_adjusted:                    45.00
+total_size:                         450m
+unit_blocks:                         450
+
+Info only reliable if xfersize is multiple of dedupunit:
+uniques_written:                       0; expected 202; delta -202 
+duplicates_written:                    0; expected 248; delta -248 
+Total writes:                          0; delta -450
+flipflops:                             0
+
+Dsim counts: Hash size:              224 (202 uniques + 22 sets)
+Dsim counts: Duplicates:             226
+Dsim counts: Ratio:                 2.01 (2.00893)
+
+00:01:43.543 Waiting for synchronization of all slaves
+00:01:43.743 Synchronization of all slaves complete
+
+<a name="_1612799726"></a><i><b>00:01:44.002 Starting RD=format_for_rd1</b></i>
+
+00:01:44.261 localhost-0: anchor=/mnt/virtual_ext4 mkdir complete.
+00:01:44.518 localhost-0: anchor=/mnt/virtual_ext4 create complete.
+Oct 30, 2024 ..Interval.. .ReqstdOps... ...cpu%...  read ....read..... ....write.... ..mb/sec... mb/sec .xfer.. ...mkdir.... ...rmdir.... ...create... ....open.... ...close.... ...delete...
+                            rate   resp total  sys   pct   rate   resp   rate   resp  read write  total    size  rate   resp  rate   resp  rate   resp  rate   resp  rate   resp  rate   resp
+00:01:45.032            1 3600.0  0.503  15.4 3.24   0.0    0.0  0.000 3600.0  0.503  0.00 450.0 450.00  131072  12.0  0.016  12.0  0.022 450.0  4.499 450.0  0.190 450.0  0.013 450.0  0.100
+00:01:45.043      avg_2-1 NaN  0.000 NaN NaN   0.0 NaN  0.000 NaN  0.000 NaN NaN NaN       0 NaN  0.000 NaN  0.000 NaN  0.000 NaN  0.000 NaN  0.000 NaN  0.000
+00:01:45.044      std_2-1                                                                                                                                                                    
+00:01:45.044      max_2-1                                                                                                                                                                    
+00:01:45.156 
+00:01:45.156 Miscellaneous statistics:
+00:01:45.156 (These statistics do not include activity between the last reported interval and shutdown.)
+00:01:45.157 FILE_CREATES        Files created:                                  450        450/sec
+00:01:45.157 DIRECTORY_CREATES   Directories created:                             12         12/sec
+00:01:45.157 FILE_DELETES        Files deleted:                                  450        450/sec
+00:01:45.157 DIRECTORY_DELETES   Directories deleted:                             12         12/sec
+00:01:45.157 WRITE_OPENS         Files opened for write activity:                450        450/sec
+00:01:45.158 DIR_EXISTS          Directory may not exist (yet):                    6          6/sec
+00:01:45.158 FILE_CLOSES         Close requests:                                 450        450/sec
+00:01:45.158 
+00:01:45.158 Flushing all reports
+00:01:45.159 Java Heap in MB. max:  512.000; current:   66.000; used:   20.247; free:   45.753
+00:01:45.174 slv=localhost-0 fwd=fwd1 fsd=fsd1 anchor=/mnt/virtual_ext4 threads= 2 skew= 0.00 operation=read 
+00:01:45.176 Dedup options: 
+dedup_type:                            1
+dedup_ratio:                        2.00
+dedup_unit:                    1,048,576
+flipflop:                             no
+hot_dedup_sets:                        0
+hot_dedup_blocks:                      0
+dedup_sets_reqd:                      5%
+dedup_sets_used:                      22
+
+unique_blocks:                       202
+duplicate_blocks:                    248 (including 22 originals)
+dedup_pct:                         50.00
+dedup_adjusted:                    45.00
+total_size:                         450m
+unit_blocks:                         450
+
+Info only reliable if xfersize is multiple of dedupunit:
+uniques_written:                       0; expected 202; delta -202 
+duplicates_written:                    0; expected 248; delta -248 
+Total writes:                          0; delta -450
+flipflops:                             0
+
+Dsim counts: Hash size:              224 (202 uniques + 22 sets)
+Dsim counts: Duplicates:             226
+Dsim counts: Ratio:                 2.01 (2.00893)
+
+00:01:45.183 Waiting for synchronization of all slaves
+00:01:45.283 Synchronization of all slaves complete
+
+<a name="_1286084959"></a><i><b>00:01:46.001 Starting RD=rd1; elapsed=30; fwdrate=max. For loops: None</b></i>
+
+Oct 30, 2024 ..Interval.. .ReqstdOps... ...cpu%...  read ....read..... ....write.... ..mb/sec... mb/sec .xfer.. ...mkdir.... ...rmdir.... ...create... ....open.... ...close.... ...delete...
+                            rate   resp total  sys   pct   rate   resp   rate   resp  read write  total    size  rate   resp  rate   resp  rate   resp  rate   resp  rate   resp  rate   resp
+00:01:47.009            1 1435304  0.001  13.2 3.57 100.0 1435304  0.001    0.0  0.000  5606  0.00 5606.6    4096   0.0  0.000   0.0  0.000   0.0  0.000  5607  0.009  5605  0.001   0.0  0.000
+00:01:48.006            2 2155532  0.001  20.6 9.15 100.0 2155532  0.001    0.0  0.000  8420  0.00 8420.0    4096   0.0  0.000   0.0  0.000   0.0  0.000  8421  0.005  8420  0.001   0.0  0.000
+00:01:49.007            3 2190621  0.001  18.3 9.07 100.0 2190621  0.001    0.0  0.000  8557  0.00 8557.0    4095   0.0  0.000   0.0  0.000   0.0  0.000  8557  0.005  8558  0.001   0.0  0.000
+00:01:50.006            4 2172293  0.001  18.4 8.75 100.0 2172293  0.001    0.0  0.000  8485  0.00 8485.4    4095   0.0  0.000   0.0  0.000   0.0  0.000  8485  0.005  8485  0.001   0.0  0.000
+00:01:51.004            5 2176413  0.001  18.5 8.41 100.0 2176413  0.001    0.0  0.000  8501  0.00 8501.6    4095   0.0  0.000   0.0  0.000   0.0  0.000  8501  0.005  8501  0.001   0.0  0.000
+00:01:52.004            6 2186404  0.001  17.8 9.02 100.0 2186404  0.001    0.0  0.000  8540  0.00 8540.6    4096   0.0  0.000   0.0  0.000   0.0  0.000  8541  0.005  8540  0.001   0.0  0.000
+00:01:53.004            7 2145866  0.001  21.6 8.82 100.0 2145866  0.001    0.0  0.000  8382  0.00 8382.2    4095   0.0  0.000   0.0  0.000   0.0  0.000  8383  0.005  8383  0.001   0.0  0.000
+00:01:54.005            8 2171034  0.001  20.8 9.11 100.0 2171034  0.001    0.0  0.000  8480  0.00 8480.6    4096   0.0  0.000   0.0  0.000   0.0  0.000  8481  0.005  8481  0.001   0.0  0.000
+00:01:55.004            9 2188399  0.001  19.4 8.99 100.0 2188399  0.001    0.0  0.000  8548  0.00 8548.4    4095   0.0  0.000   0.0  0.000   0.0  0.000  8548  0.005  8548  0.001   0.0  0.000
+00:01:56.004           10 2186547  0.001  19.5 9.18 100.0 2186547  0.001    0.0  0.000  8541  0.00 8541.2    4096   0.0  0.000   0.0  0.000   0.0  0.000  8541  0.005  8541  0.001   0.0  0.000
+00:01:57.004           11 2157525  0.001  20.8 9.16 100.0 2157525  0.001    0.0  0.000  8427  0.00 8427.8    4096   0.0  0.000   0.0  0.000   0.0  0.000  8428  0.005  8428  0.001   0.0  0.000
+00:01:58.004           12 2179373  0.001  17.4 9.29 100.0 2179373  0.001    0.0  0.000  8513  0.00 8513.1    4095   0.0  0.000   0.0  0.000   0.0  0.000  8513  0.005  8513  0.001   0.0  0.000
+00:01:59.004           13 2204959  0.001  18.2 9.61 100.0 2204959  0.001    0.0  0.000  8613  0.00 8613.1    4096   0.0  0.000   0.0  0.000   0.0  0.000  8614  0.005  8614  0.001   0.0  0.000
+00:02:00.005           14 2182094  0.001  18.8 9.22 100.0 2182094  0.001    0.0  0.000  8523  0.00 8523.7    4095   0.0  0.000   0.0  0.000   0.0  0.000  8523  0.005  8523  0.001   0.0  0.000
+00:02:01.004           15 2215042  0.001  19.3 8.85 100.0 2215042  0.001    0.0  0.000  8652  0.00 8652.5    4095   0.0  0.000   0.0  0.000   0.0  0.000  8652  0.005  8652  0.001   0.0  0.000
+00:02:02.003           16 2215091  0.001  17.9 9.35 100.0 2215091  0.001    0.0  0.000  8652  0.00 8652.7    4096   0.0  0.000   0.0  0.000   0.0  0.000  8653  0.005  8653  0.001   0.0  0.000
+00:02:03.004           17 2207022  0.001  17.8 9.27 100.0 2207022  0.001    0.0  0.000  8621  0.00 8621.1    4096   0.0  0.000   0.0  0.000   0.0  0.000  8622  0.005  8621  0.001   0.0  0.000
+00:02:04.003           18 2186512  0.001  17.6 8.98 100.0 2186512  0.001    0.0  0.000  8541  0.00 8541.0    4096   0.0  0.000   0.0  0.000   0.0  0.000  8541  0.005  8541  0.001   0.0  0.000
+00:02:05.003           19 2130003  0.001  21.8 9.52 100.0 2130003  0.001    0.0  0.000  8320  0.00 8320.3    4096   0.0  0.000   0.0  0.000   0.0  0.000  8320  0.005  8320  0.001   0.0  0.000
+00:02:06.005           20 2113622  0.001  19.1 9.33 100.0 2113622  0.001    0.0  0.000  8256  0.00 8256.3    4095   0.0  0.000   0.0  0.000   0.0  0.000  8256  0.005  8256  0.001   0.0  0.000
+00:02:07.004           21 2157838  0.001  18.4 9.56 100.0 2157838  0.001    0.0  0.000  8429  0.00 8429.0    4096   0.0  0.000   0.0  0.000   0.0  0.000  8430  0.005  8429  0.001   0.0  0.000
+00:02:08.004           22 2131505  0.001  17.9 8.51 100.0 2131505  0.001    0.0  0.000  8326  0.00 8326.2    4096   0.0  0.000   0.0  0.000   0.0  0.000  8326  0.005  8326  0.001   0.0  0.000
+00:02:09.004           23 2096536  0.001  18.9 9.18 100.0 2096536  0.001    0.0  0.000  8189  0.00 8189.5    4095   0.0  0.000   0.0  0.000   0.0  0.000  8189  0.005  8189  0.001   0.0  0.000
+00:02:10.003           24 2186754  0.001  17.9 9.14 100.0 2186754  0.001    0.0  0.000  8542  0.00 8542.0    4096   0.0  0.000   0.0  0.000   0.0  0.000  8542  0.005  8542  0.001   0.0  0.000
+00:02:11.003           25 2197989  0.001  18.8 8.59 100.0 2197989  0.001    0.0  0.000  8585  0.00 8585.8    4095   0.0  0.000   0.0  0.000   0.0  0.000  8587  0.005  8587  0.001   0.0  0.000
+00:02:12.003           26 2192942  0.001  19.4 9.00 100.0 2192942  0.001    0.0  0.000  8566  0.00 8566.1    4096   0.0  0.000   0.0  0.000   0.0  0.000  8566  0.005  8566  0.001   0.0  0.000
+00:02:13.003           27 2198155  0.001  17.2 9.21 100.0 2198155  0.001    0.0  0.000  8586  0.00 8586.5    4095   0.0  0.000   0.0  0.000   0.0  0.000  8586  0.005  8586  0.001   0.0  0.000
+00:02:14.003           28 2186419  0.001  18.5 8.83 100.0 2186419  0.001    0.0  0.000  8540  0.00 8540.7    4096   0.0  0.000   0.0  0.000   0.0  0.000  8542  0.005  8542  0.001   0.0  0.000
+00:02:15.004           29 2186875  0.001  17.8 8.92 100.0 2186875  0.001    0.0  0.000  8542  0.00 8542.4    4096   0.0  0.000   0.0  0.000   0.0  0.000  8542  0.005  8542  0.001   0.0  0.000
+00:02:16.005           30 2175853  0.001  17.7 8.83 100.0 2175853  0.001    0.0  0.000  8499  0.00 8499.4    4095   0.0  0.000   0.0  0.000   0.0  0.000  8499  0.005  8499  0.001   0.0  0.000
+00:02:16.007     avg_2-30 2175007  0.001  18.8 9.06 100.0 2175007  0.001    0.0  0.000  8496  0.00 8496.1    4095   0.0  0.000   0.0  0.000   0.0  0.000  8496  0.005  8496  0.001   0.0  0.000
+00:02:16.007     std_2-30  28978  0.001                   28978  0.001                                                                                 113.3  0.003 113.3  0.001             
+00:02:16.007     max_2-30 2215091  8.808                  2215091  8.808                                                                                  8653  0.633  8653  0.426             
+00:02:16.016 *
+00:02:16.017 ****************************************************************************************
+00:02:16.017 * Warning: total amount of i/o per second per slave (2,175,008) greater than 100,000.  *
+00:02:16.017 * You may need to adjust your total slave count.                                       *
+00:02:16.017 *                                                                                      *
+00:02:16.017 * See 'jvms=' in documentation for raw (SD/WD) workloads).                             *
+00:02:16.017 * See 'host=' and/or 'clients=' in documentation for file system (FSD/FWD) workloads). *
+00:02:16.017 *                                                                                      *
+00:02:16.017 * rd=rd1 actively used 1 slaves.                                                       *
+00:02:16.017 ****************************************************************************************
+00:02:16.017 *
+00:02:16.218 
+00:02:16.218 Miscellaneous statistics:
+00:02:16.218 (These statistics do not include activity between the last reported interval and shutdown.)
+00:02:16.218 READ_OPENS          Files opened for read activity:             251,999      8,399/sec
+00:02:16.218 FILE_BUSY           File busy:                                      551         18/sec
+00:02:16.219 FILE_CLOSES         Close requests:                             251,997      8,399/sec
+00:02:16.219 
+00:02:16.219 Flushing all reports
+00:02:16.220 Java Heap in MB. max:  512.000; current:   66.000; used:   23.483; free:   42.517
+00:02:16.235 Ending Reporter
+00:02:16.632 Vdbench execution completed successfully. Output directory: /home/ayushsavar/Downloads/Assignment4/Assignment-4/vdbench/output 
+
+00:02:17.638 Java Heap in MB. max:  512.000; current:   66.000; used:   20.719; free:   45.281

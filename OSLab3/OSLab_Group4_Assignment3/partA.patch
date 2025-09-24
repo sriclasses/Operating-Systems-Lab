@@ -1,0 +1,88 @@
+diff --git a/sysproc.c b/sysproc.c
+index 0686d29..34b4c38 100644
+--- a/sysproc.c
++++ b/sysproc.c
+@@ -51,8 +51,10 @@ sys_sbrk(void)
+   if(argint(0, &n) < 0)
+     return -1;
+   addr = myproc()->sz;
+-  if(growproc(n) < 0)
+-    return -1;
++  myproc()->sz += n;
++  
++  //  if(growproc(n) < 0)
++  //    return -1;
+   return addr;
+ }
+ 
+diff --git a/trap.c b/trap.c
+index 41c66eb..255f1fa 100644
+--- a/trap.c
++++ b/trap.c
+@@ -14,6 +14,10 @@ extern uint vectors[];  // in vectors.S: array of 256 entry pointers
+ struct spinlock tickslock;
+ uint ticks;
+ 
++int lazyAllocate();  // Declaration for the lazy allocation function in vm.c
++
++
++
+ void
+ tvinit(void)
+ {
+@@ -47,6 +51,12 @@ trap(struct trapframe *tf)
+   }
+ 
+   switch(tf->trapno){
++  case T_PGFLT:
++    if (lazyAllocate()<0) {
++      cprintf("Lazy allocation failed! \n");
++      panic("Trap");
++    }
++    break;
+   case T_IRQ0 + IRQ_TIMER:
+     if(cpuid() == 0){
+       acquire(&tickslock);
+diff --git a/vm.c b/vm.c
+index 7134cff..2ede65b 100644
+--- a/vm.c
++++ b/vm.c
+@@ -385,6 +385,38 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
+   return 0;
+ }
+ 
++
++int lazyAllocate() {
++    struct proc *p = myproc();  // Get the current process
++    char *mem;
++    uint faulting_addr, aligned_addr;
++
++    // Retrieve the faulting address from CR2 register
++    faulting_addr = rcr2(); 
++
++    // Align the faulting address to the nearest page boundary
++    aligned_addr = PGROUNDDOWN(faulting_addr);
++
++    // Allocate a new physical page
++    mem = kalloc();
++    if (mem == 0) {
++        // If memory allocation fails, return an error code
++        cprintf("kalloc failed for addr: %x\n", aligned_addr);
++        return -1;
++    }
++
++    // Clear the allocated memory (set all bytes to 0)
++    memset(mem, 0, PGSIZE);
++
++    // Map the new page into the process's address space
++    if (mappages(p->pgdir, (void *)aligned_addr, PGSIZE, V2P(mem), PTE_W | PTE_U) < 0) {
++        kfree(mem);  // Free the allocated memory if mapping fails
++        return -1;
++    }
++
++    return 0;  // Return success
++}
++
+ //PAGEBREAK!
+ // Blank page.
+ //PAGEBREAK!
